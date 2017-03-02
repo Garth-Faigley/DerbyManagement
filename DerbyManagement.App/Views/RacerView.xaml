@@ -4,9 +4,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DerbyManagement.App.Views"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300" 
+             DataContext="{Binding Source={StaticResource mainViewModelLocator},  Path=RacerViewModel}">
     <Grid>
-        <Label>This is the racer view</Label>  
+        <DataGrid Margin="5,10,5,5"
+                      HeadersVisibility="Column"
+                      AutoGenerateColumns="False"
+                      ItemsSource="{Binding Racers}"
+                      SelectionUnit="FullRow" 
+                      CanUserAddRows="False" 
+                      CanUserDeleteRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding CarNumber}" Header="Number" />
+                <DataGridTextColumn Binding="{Binding CarName}" Header="Car Name" />
+                <DataGridTextColumn Binding="{Binding OwnerName}" Header="Owner Name" />
+                <DataGridTextColumn Binding="{Binding Divisions, Converter={StaticResource localDivisionListToStringConverter}}" Header="Division(s)" />
+            </DataGrid.Columns>
+            <DataGrid.Style>
+                <Style BasedOn="{StaticResource MetroDataGrid}" TargetType="{x:Type DataGrid}">
+                    <Setter Property="AlternatingRowBackground" Value="{DynamicResource GrayBrush10}" />
+                </Style>
+            </DataGrid.Style>
+        </DataGrid>
     </Grid>
 </UserControl>

@@ -1,4 +1,5 @@
 ﻿using DerbyManagement.Model;
+using System.Collections.Generic;
 
 namespace DerbyManagement.DAL
 {
@@ -6,10 +7,8 @@ namespace DerbyManagement.DAL
     {
         // Derby
         Derby GetCurrentDerbyWithDivisions();
-      
 
-        // Division
-       
-        // TODO
+        // Racer
+        List<Racer> GetRacersByDerbyIdWithDivisions(int derbyId);  
     }
 }

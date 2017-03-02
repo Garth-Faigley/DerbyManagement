@@ -1,5 +1,7 @@
 ﻿using DerbyManagement.Model;
 using DerbyManagement.DAL;
+using System;
+using System.Collections.Generic;
 
 namespace DerbyManagement.App.Services
 {
@@ -15,6 +17,11 @@ namespace DerbyManagement.App.Services
         public Derby GetCurrentDerbyWithDivisions()
         {
             return _repository.GetCurrentDerbyWithDivisions();
+        }
+
+        public List<Racer> GetRacersByDerbyIdWithDivisions(int derbyId)
+        {
+            return _repository.GetRacersByDerbyIdWithDivisions(derbyId);
         }
     }
 }
