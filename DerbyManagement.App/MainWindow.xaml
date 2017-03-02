@@ -1,0 +1,44 @@
+﻿<controls:MetroWindow x:Class="DerbyManagement.App.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:local="clr-namespace:DerbyManagement.App"
+        xmlns:views="clr-namespace:DerbyManagement.App.Views"
+        mc:Ignorable="d"
+        Title="Derby Management" TitleCaps="False" 
+        ResizeMode="CanResizeWithGrip"
+        BorderBrush="{DynamicResource AccentColorBrush}" BorderThickness="1"
+        Height="600" Width="800">
+    <controls:MetroWindow.RightWindowCommands>
+        <controls:WindowCommands>
+            <Button Command="{Binding ToggleScoreboard}">Scoreboard: OFF</Button>
+        </controls:WindowCommands>
+    </controls:MetroWindow.RightWindowCommands>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/images/Background.png" Stretch="Fill"  Opacity="20"></ImageBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <controls:MetroAnimatedSingleRowTabControl x:Name="MainTabControl" Grid.Row="0">
+            <TabItem Header="Derby">
+                <views:DerbyView />
+            </TabItem>
+            <TabItem Header="Racers">
+                <views:RacerView />
+            </TabItem>
+
+
+        </controls:MetroAnimatedSingleRowTabControl>
+
+        <StatusBar Grid.Row="1">
+            <StatusBarItem>Put current status here</StatusBarItem>
+        </StatusBar>
+
+    </Grid>
+</controls:MetroWindow>
