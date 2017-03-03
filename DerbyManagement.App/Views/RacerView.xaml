@@ -14,6 +14,7 @@
                       HeadersVisibility="Column"
                       AutoGenerateColumns="False"
                       ItemsSource="{Binding Racers}"
+                      SelectedItem="{Binding SelectedRacer}"
                       SelectionUnit="FullRow" 
                       CanUserAddRows="False" 
                       CanUserDeleteRows="False">
@@ -22,6 +23,19 @@
                 <DataGridTextColumn Binding="{Binding CarName}" Header="Car Name" />
                 <DataGridTextColumn Binding="{Binding OwnerName}" Header="Owner Name" />
                 <DataGridTextColumn Binding="{Binding Divisions, Converter={StaticResource localDivisionListToStringConverter}}" Header="Division(s)" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Button Command="{Binding Path=DataContext.EditCommand,       
+                                                  RelativeSource  = {RelativeSource FindAncestor,
+                                                  AncestorType ={x:Type DataGrid}}}"
+                                        Content="Edit">
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
             <DataGrid.Style>
                 <Style BasedOn="{StaticResource MetroDataGrid}" TargetType="{x:Type DataGrid}">

@@ -78,7 +78,9 @@
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Messages\UpdateListMessage.cs" />
     <Compile Include="Services\DerbyDataService.cs" />
+    <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\IDerbyDataService.cs" />
+    <Compile Include="Services\IDialogService.cs" />
     <Compile Include="Utility\CustomCommand.cs" />
     <Compile Include="Utility\Messenger.cs" />
     <Compile Include="ViewModelLocator.cs" />
@@ -87,6 +89,9 @@
     <Compile Include="ViewModels\RacerViewModel.cs" />
     <Compile Include="Views\DerbyView.xaml.cs">
       <DependentUpon>DerbyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RacerDetailView.xaml.cs">
+      <DependentUpon>RacerDetailView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RacerView.xaml.cs">
       <DependentUpon>RacerView.xaml</DependentUpon>
@@ -104,6 +109,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\DerbyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RacerDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

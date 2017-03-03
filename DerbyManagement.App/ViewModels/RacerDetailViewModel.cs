@@ -2,20 +2,16 @@
 using DerbyManagement.App.Services;
 using DerbyManagement.App.Utility;
 using DerbyManagement.Model;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace DerbyManagement.App.ViewModels
 {
-    class RacerDetailViewModel : INotifyPropertyChanged
+    public class RacerDetailViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private IDerbyDataService _derbyDataService;
+        private IDialogService _dialogService;
 
         private void RaisePropertyChanged(string propertyName)
         {
@@ -36,10 +32,10 @@ namespace DerbyManagement.App.ViewModels
             }
         }
 
-        public RacerDetailViewModel(IDerbyDataService derbyDataService)
+        public RacerDetailViewModel(IDerbyDataService derbyDataService, IDialogService dialogService)
         {
             _derbyDataService = derbyDataService;
-            // TODO implement dialog service
+            _dialogService = dialogService;
 
             Messenger.Default.Register<Racer>(this, OnRacerRecieved);
 
@@ -62,8 +58,6 @@ namespace DerbyManagement.App.ViewModels
             _derbyDataService.Save();
             Messenger.Default.Send<UpdateListMessage>(new UpdateListMessage());
         }
-
-
 
     }
 }

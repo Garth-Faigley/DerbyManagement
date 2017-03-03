@@ -13,6 +13,7 @@ namespace DerbyManagement.App.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private IDerbyDataService _derbyDataService;
+        private IDialogService _dialogService;
         private Derby _currentDerby;
 
         private ObservableCollection<Racer> racers;
@@ -45,11 +46,12 @@ namespace DerbyManagement.App.ViewModels
         }
 
 
-        public RacerViewModel(IDerbyDataService derbyDataService)
+        public RacerViewModel(IDerbyDataService derbyDataService, IDialogService dialogService)
         {
             _derbyDataService = derbyDataService;
-            // TODO- add dialog service
+            _dialogService = dialogService;
 
+            // TODO- update the derby (or at least DerbyId) when a new derby is created
             _currentDerby = _derbyDataService.GetCurrentDerby();
             LoadData();
 
@@ -66,15 +68,13 @@ namespace DerbyManagement.App.ViewModels
         private void OnUpdateListMessageReceived(UpdateListMessage obj)
         {
             LoadData();
-            // TODO    dialogService.CloseDetailDialog();
+            _dialogService.CloseRacerDetailDialog();
         }
 
         private void EditRacer(object obj)
         {
-            // TODO 
-
             Messenger.Default.Send<Racer>(selectedRacer);
-            //dialogService.ShowDetailDialog();
+            _dialogService.ShowRacerDetailDialog();
         }
 
         private bool CanEditRacer(object obj)
