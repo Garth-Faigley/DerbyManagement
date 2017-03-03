@@ -1,5 +1,7 @@
 ﻿using DerbyManagement.App.Extensions;
+using DerbyManagement.App.Messages;
 using DerbyManagement.App.Services;
+using DerbyManagement.App.Utility;
 using DerbyManagement.Model;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -11,9 +13,9 @@ namespace DerbyManagement.App.ViewModels
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private IDerbyDataService _derbyDataService;
+        private Derby _currentDerby;
 
         private ObservableCollection<Racer> racers;
-
         public ObservableCollection<Racer> Racers
         {
             get { return racers; }
@@ -24,7 +26,6 @@ namespace DerbyManagement.App.ViewModels
         }
 
         private Racer selectedRacer;
-
         public Racer SelectedRacer
         {
             get { return selectedRacer; }
@@ -47,43 +48,45 @@ namespace DerbyManagement.App.ViewModels
         public RacerViewModel(IDerbyDataService derbyDataService)
         {
             _derbyDataService = derbyDataService;
-            // TODO- add messanger service
+            // TODO- add dialog service
 
+            _currentDerby = _derbyDataService.GetCurrentDerby();
             LoadData();
 
-            //LoadCommands();
+            LoadCommands();
+
+            Messenger.Default.Register<UpdateListMessage>(this, OnUpdateListMessageReceived);
         }
 
-        //private void LoadCommands()
-        //{
-        //    EditCommand = new CustomCommand(EditRacer, CanEditRacer);
-        //}
+        private void LoadCommands()
+        {
+            EditCommand = new CustomCommand(EditRacer, CanEditRacer);
+        }
 
-        // TODO
-        //private void OnUpdateListMessageReceived(UpdateListMessage obj)
-        //{
-        //    LoadData();
-        //    dialogService.CloseDetailDialog();
-        //}
+        private void OnUpdateListMessageReceived(UpdateListMessage obj)
+        {
+            LoadData();
+            // TODO    dialogService.CloseDetailDialog();
+        }
 
         private void EditRacer(object obj)
         {
             // TODO 
 
-            //Messenger.Default.Send<Racer>(selectedRacer);
+            Messenger.Default.Send<Racer>(selectedRacer);
             //dialogService.ShowDetailDialog();
         }
 
-        //private bool CanEditRacer(object obj)
-        //{
-        //    if (SelectedRacer != null)
-        //        return true;
-        //    return false;
-        //}
+        private bool CanEditRacer(object obj)
+        {
+            if (SelectedRacer != null)
+                return true;
+            return false;
+        }
 
         private void LoadData()
         {
-            Racers = _derbyDataService.GetRacersByDerbyIdWithDivisions(2).ToObservableCollection();
+            Racers = _derbyDataService.GetRacersByDerbyIdWithDivisions(_currentDerby.DerbyId).ToObservableCollection();
         }
 
     }

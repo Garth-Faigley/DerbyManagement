@@ -76,10 +76,14 @@
     <Compile Include="Converter\DoNothingConverter.cs" />
     <Compile Include="Extensions\EnumBindingSourceExtension.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Messages\UpdateListMessage.cs" />
     <Compile Include="Services\DerbyDataService.cs" />
     <Compile Include="Services\IDerbyDataService.cs" />
+    <Compile Include="Utility\CustomCommand.cs" />
+    <Compile Include="Utility\Messenger.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\DerbyViewModel.cs" />
+    <Compile Include="ViewModels\RacerDetailViewModel.cs" />
     <Compile Include="ViewModels\RacerViewModel.cs" />
     <Compile Include="Views\DerbyView.xaml.cs">
       <DependentUpon>DerbyView.xaml</DependentUpon>

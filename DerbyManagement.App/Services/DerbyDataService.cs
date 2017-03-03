@@ -14,6 +14,11 @@ namespace DerbyManagement.App.Services
             _repository = repository;
         }
 
+        public Derby GetCurrentDerby()
+        {
+            return _repository.GetCurrentDerby();
+        }
+
         public Derby GetCurrentDerbyWithDivisions()
         {
             return _repository.GetCurrentDerbyWithDivisions();
@@ -22,6 +27,11 @@ namespace DerbyManagement.App.Services
         public List<Racer> GetRacersByDerbyIdWithDivisions(int derbyId)
         {
             return _repository.GetRacersByDerbyIdWithDivisions(derbyId);
+        }
+
+        public void Save()
+        {
+            _repository.Save();
         }
     }
 }

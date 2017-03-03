@@ -1,6 +1,7 @@
-﻿using DerbyManagement.App.Services;
+﻿using DerbyManagement.App.Messages;
+using DerbyManagement.App.Services;
+using DerbyManagement.App.Utility;
 using DerbyManagement.Model;
-using System;
 using System.ComponentModel;
 
 namespace DerbyManagement.App.ViewModels
@@ -18,6 +19,8 @@ namespace DerbyManagement.App.ViewModels
             set {
                 derby = value;
                 RaisePropertyChanged("Derby");
+
+                Messenger.Default.Send<UpdateListMessage>(new UpdateListMessage());
             }
         }
 

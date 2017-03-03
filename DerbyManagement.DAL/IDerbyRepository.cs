@@ -6,9 +6,12 @@ namespace DerbyManagement.DAL
     public interface IDerbyRepository
     {
         // Derby
+        Derby GetCurrentDerby();
         Derby GetCurrentDerbyWithDivisions();
 
         // Racer
-        List<Racer> GetRacersByDerbyIdWithDivisions(int derbyId);  
+        List<Racer> GetRacersByDerbyIdWithDivisions(int derbyId);
+
+        void Save();
     }
 }
