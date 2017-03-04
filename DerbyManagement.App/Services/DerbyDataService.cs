@@ -1,6 +1,5 @@
 ﻿using DerbyManagement.Model;
 using DerbyManagement.DAL;
-using System;
 using System.Collections.Generic;
 
 namespace DerbyManagement.App.Services
@@ -32,6 +31,11 @@ namespace DerbyManagement.App.Services
         public void Save()
         {
             _repository.Save();
+        }
+
+        public void Cancel()
+        {
+            _repository.Cancel();
         }
     }
 }

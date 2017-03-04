@@ -20,7 +20,7 @@ namespace DerbyManagement.App.ViewModels
                 derby = value;
                 RaisePropertyChanged("Derby");
 
-                Messenger.Default.Send<UpdateListMessage>(new UpdateListMessage());
+                // TODO- send message when new derby created
             }
         }
 

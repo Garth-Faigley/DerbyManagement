@@ -2,7 +2,7 @@
 using System.Data.Entity;
 using System.Linq;
 using System.Collections.Generic;
-using System;
+using System.Data.Entity.Infrastructure;
 
 namespace DerbyManagement.DAL
 {
@@ -35,6 +35,23 @@ namespace DerbyManagement.DAL
         {
             RemoveEmptyNewObjects();
             _context.SaveChanges();
+        }
+
+        public void Cancel()
+        {
+            foreach (DbEntityEntry entry in _context.ChangeTracker.Entries())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Modified:
+                        entry.State = EntityState.Unchanged; break;
+                    case EntityState.Added:
+                        entry.State = EntityState.Detached; break;
+                    case EntityState.Deleted:
+                        entry.Reload(); break;
+                    default: break;
+                }
+            }
         }
 
         private void RemoveEmptyNewObjects()

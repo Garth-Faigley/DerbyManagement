@@ -6,6 +6,7 @@ using DerbyManagement.Model;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
+using System;
 
 namespace DerbyManagement.App.ViewModels
 {
@@ -20,7 +21,8 @@ namespace DerbyManagement.App.ViewModels
         public ObservableCollection<Racer> Racers
         {
             get { return racers; }
-            set {
+            set
+            {
                 racers = value;
                 RaisePropertyChanged("Racers");
             }
@@ -30,7 +32,8 @@ namespace DerbyManagement.App.ViewModels
         public Racer SelectedRacer
         {
             get { return selectedRacer; }
-            set {
+            set
+            {
                 selectedRacer = value;
                 RaisePropertyChanged("SelectedRacer");
             }
@@ -57,7 +60,7 @@ namespace DerbyManagement.App.ViewModels
 
             LoadCommands();
 
-            Messenger.Default.Register<UpdateListMessage>(this, OnUpdateListMessageReceived);
+            Messenger.Default.Register<UpdateListMessage>(this, OnUpdateListMessageRecieved);
         }
 
         private void LoadCommands()
@@ -65,7 +68,7 @@ namespace DerbyManagement.App.ViewModels
             EditCommand = new CustomCommand(EditRacer, CanEditRacer);
         }
 
-        private void OnUpdateListMessageReceived(UpdateListMessage obj)
+        private void OnUpdateListMessageRecieved(UpdateListMessage obj)
         {
             LoadData();
             _dialogService.CloseRacerDetailDialog();
@@ -79,9 +82,9 @@ namespace DerbyManagement.App.ViewModels
 
         private bool CanEditRacer(object obj)
         {
-            if (SelectedRacer != null)
-                return true;
-            return false;
+            //if (SelectedRacer != null)
+            return true;
+            //return false;
         }
 
         private void LoadData()

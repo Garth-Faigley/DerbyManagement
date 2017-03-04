@@ -2,6 +2,8 @@
 {
     class UpdateListMessage
     {
-        //  Nothing necessary.  The message's meaning is clear just from the name.
+        public UpdateListMessage()
+        {
+        }
     }
 }

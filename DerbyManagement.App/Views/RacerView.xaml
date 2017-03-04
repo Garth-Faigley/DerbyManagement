@@ -9,7 +9,19 @@
              d:DesignHeight="300" d:DesignWidth="300" 
              DataContext="{Binding Source={StaticResource mainViewModelLocator},  Path=RacerViewModel}">
     <Grid>
-        <DataGrid Margin="5,10,5,5" 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button HorizontalAlignment="Right" Grid.Column="1" 
+                Content="Add New Racer"></Button>
+        <DataGrid Grid.Row="1" Grid.Column="1"
+                  Margin="5,10,5,5" 
                   HorizontalAlignment="Center"
                       HeadersVisibility="Column"
                       AutoGenerateColumns="False"
@@ -31,6 +43,19 @@
                                                   RelativeSource  = {RelativeSource FindAncestor,
                                                   AncestorType ={x:Type DataGrid}}}"
                                         Content="Edit">
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Button Command="{Binding Path=DataContext.DeleteCommand,       
+                                                  RelativeSource  = {RelativeSource FindAncestor,
+                                                  AncestorType ={x:Type DataGrid}}}"
+                                        Content="Delete">
                                 </Button>
                             </StackPanel>
                         </DataTemplate>

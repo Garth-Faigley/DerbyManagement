@@ -4,6 +4,7 @@ using DerbyManagement.App.Utility;
 using DerbyManagement.Model;
 using System.ComponentModel;
 using System.Windows.Input;
+using System;
 
 namespace DerbyManagement.App.ViewModels
 {
@@ -20,6 +21,7 @@ namespace DerbyManagement.App.ViewModels
         }
 
         public ICommand SaveCommand { get; set; }
+        public ICommand CancelCommand { get; set; }
 
         private Racer selectedRacer;
 
@@ -40,6 +42,7 @@ namespace DerbyManagement.App.ViewModels
             Messenger.Default.Register<Racer>(this, OnRacerRecieved);
 
             SaveCommand = new CustomCommand(SaveRacer, CanSaveRacer);
+            CancelCommand = new CustomCommand(CancelRacer, CanCancel);
         }
 
         private void OnRacerRecieved(Racer racer)
@@ -57,6 +60,17 @@ namespace DerbyManagement.App.ViewModels
         {
             _derbyDataService.Save();
             Messenger.Default.Send<UpdateListMessage>(new UpdateListMessage());
+        }
+
+        private void CancelRacer(object obj)
+        {
+            _derbyDataService.Cancel();
+            Messenger.Default.Send<UpdateListMessage>(new UpdateListMessage());
+        }
+
+        private bool CanCancel(object obj)
+        {
+            return true;
         }
 
     }
