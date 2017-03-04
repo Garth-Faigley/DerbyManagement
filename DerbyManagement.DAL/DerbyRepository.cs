@@ -31,6 +31,13 @@ namespace DerbyManagement.DAL
                 .ToList();
         }
 
+        public Racer CreateRacer()
+        {
+            var racer = new Racer();
+            _context.Racers.Add(racer);
+            return racer;
+        }
+
         public void Save()
         {
             RemoveEmptyNewObjects();
@@ -62,8 +69,10 @@ namespace DerbyManagement.DAL
             for (var i = _context.Racers.Local.Count; i > 0; i--)
             {
                 var racer = _context.Racers.Local[i - 1];
+                //if (_context.Entry(racer).State == EntityState.Added
+                //    && !racer.IsDirty
                 if (_context.Entry(racer).State == EntityState.Added
-                    && !racer.IsDirty)
+                    && racer.CarNumber == 0)
                 {
                     _context.Racers.Remove(racer);
                 }

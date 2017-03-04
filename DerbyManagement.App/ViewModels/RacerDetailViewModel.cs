@@ -5,20 +5,15 @@ using DerbyManagement.Model;
 using System.ComponentModel;
 using System.Windows.Input;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace DerbyManagement.App.ViewModels
 {
-    public class RacerDetailViewModel : INotifyPropertyChanged
+    public class RacerDetailViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
         private IDerbyDataService _derbyDataService;
         private IDialogService _dialogService;
-
-        private void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         public ICommand SaveCommand { get; set; }
         public ICommand CancelCommand { get; set; }
@@ -52,7 +47,7 @@ namespace DerbyManagement.App.ViewModels
 
         private bool CanSaveRacer(object obj)
         {
-            // TODO
+            // return selectedRacer.IsDirty;
             return true;
         }
 

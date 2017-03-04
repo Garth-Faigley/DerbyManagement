@@ -4,15 +4,12 @@ using DerbyManagement.App.Services;
 using DerbyManagement.App.Utility;
 using DerbyManagement.Model;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Windows.Input;
-using System;
 
 namespace DerbyManagement.App.ViewModels
 {
-    public class RacerViewModel : INotifyPropertyChanged
+    public class RacerViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
         private IDerbyDataService _derbyDataService;
         private IDialogService _dialogService;
         private Derby _currentDerby;
@@ -40,13 +37,7 @@ namespace DerbyManagement.App.ViewModels
         }
 
         public ICommand EditCommand { get; set; }
-
-
-        private void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
+        public ICommand AddCommand { get; set; }
 
 
         public RacerViewModel(IDerbyDataService derbyDataService, IDialogService dialogService)
@@ -66,6 +57,7 @@ namespace DerbyManagement.App.ViewModels
         private void LoadCommands()
         {
             EditCommand = new CustomCommand(EditRacer, CanEditRacer);
+            AddCommand = new CustomCommand(AddRacer, CanAddRacer);
         }
 
         private void OnUpdateListMessageRecieved(UpdateListMessage obj)
@@ -82,9 +74,20 @@ namespace DerbyManagement.App.ViewModels
 
         private bool CanEditRacer(object obj)
         {
-            //if (SelectedRacer != null)
             return true;
-            //return false;
+        }
+
+        private void AddRacer(object obj)
+        {
+            Racer newRacer = _derbyDataService.CreateRacer();
+            Racers.Add(newRacer);
+            Messenger.Default.Send<Racer>(newRacer);
+            _dialogService.ShowRacerDetailDialog();
+        }
+
+        private bool CanAddRacer(object obj)
+        {
+            return true;
         }
 
         private void LoadData()

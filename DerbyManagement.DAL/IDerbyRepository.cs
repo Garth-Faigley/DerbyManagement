@@ -11,6 +11,7 @@ namespace DerbyManagement.DAL
 
         // Racer
         List<Racer> GetRacersByDerbyIdWithDivisions(int derbyId);
+        Racer CreateRacer();
 
         void Save();
         void Cancel();

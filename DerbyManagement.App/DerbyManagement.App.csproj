@@ -87,6 +87,7 @@
     <Compile Include="ViewModels\DerbyViewModel.cs" />
     <Compile Include="ViewModels\RacerDetailViewModel.cs" />
     <Compile Include="ViewModels\RacerViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\DerbyView.xaml.cs">
       <DependentUpon>DerbyView.xaml</DependentUpon>
     </Compile>

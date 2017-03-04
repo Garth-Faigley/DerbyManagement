@@ -1,6 +1,7 @@
 ﻿using DerbyManagement.Model;
 using DerbyManagement.DAL;
 using System.Collections.Generic;
+using System;
 
 namespace DerbyManagement.App.Services
 {
@@ -28,6 +29,11 @@ namespace DerbyManagement.App.Services
             return _repository.GetRacersByDerbyIdWithDivisions(derbyId);
         }
 
+        public Racer CreateRacer()
+        {
+            return _repository.CreateRacer();
+        }
+
         public void Save()
         {
             _repository.Save();
@@ -37,5 +43,6 @@ namespace DerbyManagement.App.Services
         {
             _repository.Cancel();
         }
+
     }
 }

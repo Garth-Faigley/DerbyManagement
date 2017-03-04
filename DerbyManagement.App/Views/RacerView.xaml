@@ -19,7 +19,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Button HorizontalAlignment="Right" Grid.Column="1" 
-                Content="Add New Racer"></Button>
+                Content="Add New Racer" Command="{Binding AddCommand}"></Button>
         <DataGrid Grid.Row="1" Grid.Column="1"
                   Margin="5,10,5,5" 
                   HorizontalAlignment="Center"

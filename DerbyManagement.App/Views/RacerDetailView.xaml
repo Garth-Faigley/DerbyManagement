@@ -28,7 +28,17 @@
         <Label Grid.Row="3" Content="Divisions" FontWeight="Bold"></Label>
         <TextBox Grid.Row="0" Grid.Column="1" Margin="5" 
                  Text="{Binding SelectedRacer.CarNumber, Mode=TwoWay}" 
-                 Width="60" HorizontalAlignment="Left"></TextBox>
+                 Width="60" HorizontalAlignment="Left">
+            <Validation.ErrorTemplate>
+                <ControlTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <!-- Placeholder for the TextBox itself -->
+                        <AdornedElementPlaceholder x:Name="textBox"/>
+                        <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" Margin="5"/>
+                    </StackPanel>
+                </ControlTemplate>
+            </Validation.ErrorTemplate>
+        </TextBox>
         <TextBox Grid.Row="1" Grid.Column="1" Margin="5" 
                  Text="{Binding SelectedRacer.CarName, Mode=TwoWay}"></TextBox>
         <TextBox Grid.Row="2" Grid.Column="1" Margin="5" 
@@ -64,19 +74,9 @@
         <StackPanel Grid.Row="4" Grid.Column="1" Margin="5" 
                     HorizontalAlignment="Right" Orientation="Horizontal">
             <Button Content="Save and Add Another Racer"></Button>
-            <Button Content="Save and Close">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Click">
-                        <i:InvokeCommandAction Command="{Binding SaveCommand}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
+            <Button Content="Save and Close" Command="{Binding SaveCommand}">
             </Button>
-            <Button Content="Cancel">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="Click">
-                        <i:InvokeCommandAction Command="{Binding CancelCommand}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
+            <Button Content="Cancel" Command="{Binding CancelCommand}">
             </Button>
         </StackPanel>
     </Grid>

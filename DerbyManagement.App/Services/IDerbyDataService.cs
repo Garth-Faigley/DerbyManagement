@@ -11,6 +11,7 @@ namespace DerbyManagement.App.Services
 
         // Racer
         List<Racer> GetRacersByDerbyIdWithDivisions(int derbyId);
+        Racer CreateRacer();
 
         void Save();
         void Cancel();

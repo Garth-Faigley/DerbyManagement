@@ -1,14 +1,10 @@
-﻿using DerbyManagement.App.Messages;
-using DerbyManagement.App.Services;
-using DerbyManagement.App.Utility;
+﻿using DerbyManagement.App.Services;
 using DerbyManagement.Model;
-using System.ComponentModel;
 
 namespace DerbyManagement.App.ViewModels
 {
-    public class DerbyViewModel : INotifyPropertyChanged
+    public class DerbyViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
         private IDerbyDataService _derbyDataService;
 
         private Derby derby;
@@ -51,10 +47,5 @@ namespace DerbyManagement.App.ViewModels
         //    throw new NotImplementedException();
         //}
 
-        private void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }
