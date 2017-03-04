@@ -5,6 +5,8 @@ using DerbyManagement.App.Utility;
 using DerbyManagement.Model;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using System;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace DerbyManagement.App.ViewModels
 {
@@ -38,6 +40,7 @@ namespace DerbyManagement.App.ViewModels
 
         public ICommand EditCommand { get; set; }
         public ICommand AddCommand { get; set; }
+        public ICommand DeleteCommand { get; set; }
 
 
         public RacerViewModel(IDerbyDataService derbyDataService, IDialogService dialogService)
@@ -58,6 +61,7 @@ namespace DerbyManagement.App.ViewModels
         {
             EditCommand = new CustomCommand(EditRacer, CanEditRacer);
             AddCommand = new CustomCommand(AddRacer, CanAddRacer);
+            DeleteCommand = new CustomCommand(DeleteRacer, CanDeleteRacer);
         }
 
         private void OnUpdateListMessageRecieved(UpdateListMessage obj)
@@ -86,6 +90,17 @@ namespace DerbyManagement.App.ViewModels
         }
 
         private bool CanAddRacer(object obj)
+        {
+            return true;
+        }
+
+        private void DeleteRacer(object obj)
+        {
+            _derbyDataService.DeleteRacer(selectedRacer);
+            LoadData();
+        }
+
+        private bool CanDeleteRacer(object obj)
         {
             return true;
         }

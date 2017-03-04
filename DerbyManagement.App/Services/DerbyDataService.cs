@@ -24,6 +24,8 @@ namespace DerbyManagement.App.Services
             return _repository.GetCurrentDerbyWithDivisions();
         }
 
+        #region " Racers "
+
         public List<Racer> GetRacersByDerbyIdWithDivisions(int derbyId)
         {
             return _repository.GetRacersByDerbyIdWithDivisions(derbyId);
@@ -33,6 +35,13 @@ namespace DerbyManagement.App.Services
         {
             return _repository.CreateRacer();
         }
+
+        public void DeleteRacer(Racer racer)
+        {
+            _repository.DeleteRacer(racer);
+        }
+
+        #endregion
 
         public void Save()
         {

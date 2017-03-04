@@ -24,6 +24,8 @@ namespace DerbyManagement.DAL
                 .FirstOrDefault();
         }
 
+        #region " Racers "
+
         public List<Racer> GetRacersByDerbyIdWithDivisions(int derbyId)
         {
             return _context.Racers.Include(r => r.Divisions)
@@ -37,6 +39,14 @@ namespace DerbyManagement.DAL
             _context.Racers.Add(racer);
             return racer;
         }
+
+        public void DeleteRacer(Racer racer)
+        {
+            _context.Racers.Remove(racer);
+            Save();
+        }
+
+        #endregion
 
         public void Save()
         {
@@ -69,10 +79,8 @@ namespace DerbyManagement.DAL
             for (var i = _context.Racers.Local.Count; i > 0; i--)
             {
                 var racer = _context.Racers.Local[i - 1];
-                //if (_context.Entry(racer).State == EntityState.Added
-                //    && !racer.IsDirty
                 if (_context.Entry(racer).State == EntityState.Added
-                    && racer.CarNumber == 0)
+                    && !racer.IsDirty)
                 {
                     _context.Racers.Remove(racer);
                 }
