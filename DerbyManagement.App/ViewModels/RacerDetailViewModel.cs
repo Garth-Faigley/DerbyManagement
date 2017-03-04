@@ -1,12 +1,11 @@
-﻿using DerbyManagement.App.Messages;
+﻿using DerbyManagement.App.Extensions;
+using DerbyManagement.App.Messages;
 using DerbyManagement.App.Services;
 using DerbyManagement.App.Utility;
 using DerbyManagement.Model;
-using System.ComponentModel;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 
 namespace DerbyManagement.App.ViewModels
 {
@@ -14,23 +13,59 @@ namespace DerbyManagement.App.ViewModels
     {
         private IDerbyDataService _derbyDataService;
         private IDialogService _dialogService;
+        private bool _isLoading;
 
         public ICommand SaveCommand { get; set; }
         public ICommand CancelCommand { get; set; }
 
-        private Racer selectedRacer;
+        public Racer SelectedRacer { get; set; }
 
-        public Racer SelectedRacer
+        public int CarNumber
         {
-            get { return selectedRacer; }
-            set {
-                selectedRacer = value;
+            get { return SelectedRacer.CarNumber; }
+            set
+            {
+                SelectedRacer.CarNumber = value;
+                SetRacerDirty();
+                RaisePropertyChanged("SelectedRacer");
+            }
+        }
+
+        public string CarName
+        {
+            get { return SelectedRacer.CarName; }
+            set
+            {
+                SelectedRacer.CarName = value;
+                SetRacerDirty();
+                RaisePropertyChanged("SelectedRacer");
+            }
+        }
+
+        public string OwnerName
+        {
+            get { return SelectedRacer.OwnerName; }
+            set
+            {
+                SelectedRacer.OwnerName = value;
+                SetRacerDirty();
+                RaisePropertyChanged("SelectedRacer");
+            }
+        }
+
+        public ObservableCollection<Division> Divisions
+        {
+            get { return SelectedRacer.Divisions.ToObservableCollection(); }
+            set
+            {
+                SelectedRacer.Divisions = value.ToList();
+                SetRacerDirty();
                 RaisePropertyChanged("SelectedRacer");
             }
         }
 
         public RacerDetailViewModel(IDerbyDataService derbyDataService, IDialogService dialogService)
-        {
+        {   
             _derbyDataService = derbyDataService;
             _dialogService = dialogService;
 
@@ -42,13 +77,14 @@ namespace DerbyManagement.App.ViewModels
 
         private void OnRacerRecieved(Racer racer)
         {
-            selectedRacer = racer;
+            _isLoading = true;
+            SelectedRacer = racer;
+            _isLoading = false;
         }
 
         private bool CanSaveRacer(object obj)
         {
-            // return selectedRacer.IsDirty;
-            return true;
+            return SelectedRacer.IsDirty;
         }
 
         private void SaveRacer(object racer)
@@ -66,6 +102,14 @@ namespace DerbyManagement.App.ViewModels
         private bool CanCancel(object obj)
         {
             return true;
+        }
+
+        private void SetRacerDirty()
+        {
+            if (!_isLoading)
+            {
+                SelectedRacer.IsDirty = true;
+            }
         }
 
     }

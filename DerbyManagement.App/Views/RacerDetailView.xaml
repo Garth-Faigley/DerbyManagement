@@ -27,7 +27,7 @@
         <Label Grid.Row="2" Content="Owner Name" FontWeight="Bold"></Label>
         <Label Grid.Row="3" Content="Divisions" FontWeight="Bold"></Label>
         <TextBox Grid.Row="0" Grid.Column="1" Margin="5" 
-                 Text="{Binding SelectedRacer.CarNumber, Mode=TwoWay}" 
+                 Text="{Binding CarNumber, Mode=TwoWay}" 
                  Width="60" HorizontalAlignment="Left">
             <Validation.ErrorTemplate>
                 <ControlTemplate>
@@ -40,9 +40,9 @@
             </Validation.ErrorTemplate>
         </TextBox>
         <TextBox Grid.Row="1" Grid.Column="1" Margin="5" 
-                 Text="{Binding SelectedRacer.CarName, Mode=TwoWay}"></TextBox>
+                 Text="{Binding CarName, Mode=TwoWay}"></TextBox>
         <TextBox Grid.Row="2" Grid.Column="1" Margin="5" 
-                 Text="{Binding SelectedRacer.OwnerName, Mode=TwoWay}"></TextBox>
+                 Text="{Binding OwnerName, Mode=TwoWay}"></TextBox>
         <Grid Grid.Row="3" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
@@ -50,7 +50,7 @@
             </Grid.RowDefinitions>
             <Button Content="Add Division"></Button>
             <ListView Grid.Row="1" Margin="5"
-            ItemsSource="{Binding SelectedRacer.Divisions}" Name="ListViewPeople">
+            ItemsSource="{Binding Divisions}" Name="ListViewPeople">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn>
