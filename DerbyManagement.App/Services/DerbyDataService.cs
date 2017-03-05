@@ -5,7 +5,7 @@ using System;
 
 namespace DerbyManagement.App.Services
 {
-    class DerbyDataService : IDerbyDataService
+    public class DerbyDataService : IDerbyDataService
     {
         IDerbyRepository _repository;
 
