@@ -64,6 +64,10 @@
     <Compile Include="Migrations\201702251201341_ImplementIModificationHistory.Designer.cs">
       <DependentUpon>201702251201341_ImplementIModificationHistory.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703061815496_RacerValidationAndNameSplit.cs" />
+    <Compile Include="Migrations\201703061815496_RacerValidationAndNameSplit.Designer.cs">
+      <DependentUpon>201703061815496_RacerValidationAndNameSplit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -85,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702251201341_ImplementIModificationHistory.resx">
       <DependentUpon>201702251201341_ImplementIModificationHistory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703061815496_RacerValidationAndNameSplit.resx">
+      <DependentUpon>201703061815496_RacerValidationAndNameSplit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{64302473-2002-4A11-9921-368FC4F01385}</ProjectGuid>
+    <ProjectGuid>{7B0FF6F1-7A76-43D3-A05F-B29F741A2E9D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DerbyManagement.Model</RootNamespace>
-    <AssemblyName>DerbyManagement.Model</AssemblyName>
+    <RootNamespace>DerbyManagement.BLL</RootNamespace>
+    <AssemblyName>DerbyManagement.BLL</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,16 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomValidationAttributes\MustHaveOneElementAttribute.cs" />
-    <Compile Include="Derby.cs" />
-    <Compile Include="Division.cs" />
-    <Compile Include="Enums\HeatStatus.cs" />
-    <Compile Include="Enums\ScoringType.cs" />
-    <Compile Include="Heat.cs" />
-    <Compile Include="Interfaces\IModificationHistory.cs" />
+    <Compile Include="Scheduler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Racer.cs" />
-    <Compile Include="Run.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DerbyManagement.DAL\DerbyManagement.DAL.csproj">
+      <Project>{e123c993-45ca-4688-9db0-13cfe9063682}</Project>
+      <Name>DerbyManagement.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DerbyManagement.Model\DerbyManagement.Model.csproj">
+      <Project>{64302473-2002-4a11-9921-368fc4f01385}</Project>
+      <Name>DerbyManagement.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -35,7 +35,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding CarNumber}" Header="Number" />
                 <DataGridTextColumn Binding="{Binding CarName}" Header="Car Name" />
-                <DataGridTextColumn Binding="{Binding OwnerName}" Header="Owner Name" />
+                <DataGridTextColumn Binding="{Binding OwnerFirstName}" Header="Owner First Name" />
+                <DataGridTextColumn Binding="{Binding OwnerLastName}" Header="Owner Last Name" />
                 <DataGridTextColumn Binding="{Binding Divisions, Converter={StaticResource localDivisionListToStringConverter}}" Header="Division(s)" />
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>

@@ -5,7 +5,6 @@ using DerbyManagement.App.Utility;
 using DerbyManagement.Model;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using MahApps.Metro.Controls.Dialogs;
 
 namespace DerbyManagement.App.ViewModels
 {
@@ -96,7 +95,7 @@ namespace DerbyManagement.App.ViewModels
         private async void DeleteRacer(object obj)
         {
             if (await _dialogService.ShowMessageConfirm(this, "Delete Racer",
-                "Delete racer " + selectedRacer.OwnerName + "?"))
+                "Delete racer " + selectedRacer.OwnerFirstName + "?"))
             {
                 _derbyDataService.DeleteRacer(selectedRacer);
                 LoadData();

@@ -91,13 +91,13 @@ namespace TestConsoleApp
                 {
                     CarNumber = 10,
                     CarName = "Car Number Ten",
-                    OwnerName = "Owner Number Ten"
+                    OwnerFirstName = "Owner Number Ten"
                 };
                 var racerTwo = new Racer
                 {
                     CarNumber = 11,
                     CarName = "Car Number 11",
-                    OwnerName = "Owner Number 11"
+                    OwnerFirstName = "Owner Number 11"
                 };
                 context.Divisions.Add(division);
                 division.Racers.Add(racerOne);

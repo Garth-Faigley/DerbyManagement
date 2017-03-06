@@ -10,6 +10,7 @@ namespace DerbyManagement.DAL
     {
         readonly DerbyContext _context = new DerbyContext();
 
+        #region " Derby "
         public Derby GetCurrentDerby()
         {
             return _context.Derbies
@@ -23,8 +24,15 @@ namespace DerbyManagement.DAL
                 .OrderByDescending(d => d.DerbyId)
                 .FirstOrDefault();
         }
+        #endregion
 
-        #region " Racers "
+        public List<Division> GatAllDivisionsExceptChampionship(int derbyId)
+        {
+            return _context.Divisions.Where(d => d.DerbyId == derbyId && d.IsChampionship == false)
+                .OrderBy(d => d.Sequence).ToList();
+        }
+
+        #region " Racer "
 
         public List<Racer> GetRacersByDerbyIdWithDivisions(int derbyId)
         {
@@ -86,6 +94,6 @@ namespace DerbyManagement.DAL
                 }
             }
         }
-  
+
     }
 }

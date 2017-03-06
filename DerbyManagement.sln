@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DerbyManagement.App", "Derb
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DerbyManagement.Tests", "DerbyManagement.Tests\DerbyManagement.Tests.csproj", "{06DDC5AC-0EDD-4CE2-B74C-B969803D25B3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DerbyManagement.BLL", "DerbyManagement.BLL\DerbyManagement.BLL.csproj", "{7B0FF6F1-7A76-43D3-A05F-B29F741A2E9D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{06DDC5AC-0EDD-4CE2-B74C-B969803D25B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06DDC5AC-0EDD-4CE2-B74C-B969803D25B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06DDC5AC-0EDD-4CE2-B74C-B969803D25B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B0FF6F1-7A76-43D3-A05F-B29F741A2E9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B0FF6F1-7A76-43D3-A05F-B29F741A2E9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B0FF6F1-7A76-43D3-A05F-B29F741A2E9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B0FF6F1-7A76-43D3-A05F-B29F741A2E9D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

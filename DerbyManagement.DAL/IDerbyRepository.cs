@@ -9,6 +9,9 @@ namespace DerbyManagement.DAL
         Derby GetCurrentDerby();
         Derby GetCurrentDerbyWithDivisions();
 
+        // Division
+        List<Division> GatAllDivisionsExceptChampionship(int derbyId);
+
         // Racer
         List<Racer> GetRacersByDerbyIdWithDivisions(int derbyId);
         Racer CreateRacer();

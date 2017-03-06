@@ -42,12 +42,23 @@ namespace DerbyManagement.App.ViewModels
             }
         }
 
-        public string OwnerName
+        public string OwnerFirstName
         {
-            get { return SelectedRacer.OwnerName; }
+            get { return SelectedRacer.OwnerFirstName; }
             set
             {
-                SelectedRacer.OwnerName = value;
+                SelectedRacer.OwnerFirstName = value;
+                SetRacerDirty();
+                RaisePropertyChanged("SelectedRacer");
+            }
+        }
+
+        public string OwnerLastName
+        {
+            get { return SelectedRacer.OwnerLastName; }
+            set
+            {
+                SelectedRacer.OwnerLastName = value;
                 SetRacerDirty();
                 RaisePropertyChanged("SelectedRacer");
             }

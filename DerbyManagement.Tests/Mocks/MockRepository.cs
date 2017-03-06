@@ -10,7 +10,28 @@ namespace DerbyManagement.Tests.Mocks
 {
     class MockRepository : IDerbyRepository
     {
-        public void Cancel()
+
+        #region " Derby "
+        public Derby GetCurrentDerby()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Derby GetCurrentDerbyWithDivisions()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region " Division " 
+        public List<Division> GatAllDivisionsExceptChampionship(int derbyId)
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
+        #region " Racer " 
+        public List<Racer> GetRacersByDerbyIdWithDivisions(int derbyId)
         {
             throw new NotImplementedException();
         }
@@ -24,25 +45,16 @@ namespace DerbyManagement.Tests.Mocks
         {
             throw new NotImplementedException();
         }
+        #endregion
 
-        public Derby GetCurrentDerby()
+        public void Cancel()
         {
-            throw new NotImplementedException();
-        }
-
-        public Derby GetCurrentDerbyWithDivisions()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Racer> GetRacersByDerbyIdWithDivisions(int derbyId)
-        {
-            throw new NotImplementedException();
+            // Don't need to do anything in test.
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            // Don't need to do anything in test.
         }
     }
 }

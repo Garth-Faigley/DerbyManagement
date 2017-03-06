@@ -1,7 +1,6 @@
 ﻿using DerbyManagement.Model;
 using DerbyManagement.DAL;
 using System.Collections.Generic;
-using System;
 
 namespace DerbyManagement.App.Services
 {
@@ -14,6 +13,7 @@ namespace DerbyManagement.App.Services
             _repository = repository;
         }
 
+        #region " Derby "
         public Derby GetCurrentDerby()
         {
             return _repository.GetCurrentDerby();
@@ -22,6 +22,12 @@ namespace DerbyManagement.App.Services
         public Derby GetCurrentDerbyWithDivisions()
         {
             return _repository.GetCurrentDerbyWithDivisions();
+        }
+        #endregion
+
+        public List<Division> GatAllDivisionsExceptChampionship(int derbyId)
+        {
+            return _repository.GatAllDivisionsExceptChampionship(derbyId);
         }
 
         #region " Racers "
