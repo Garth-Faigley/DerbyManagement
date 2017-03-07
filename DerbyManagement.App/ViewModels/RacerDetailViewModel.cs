@@ -6,79 +6,77 @@ using DerbyManagement.Model;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
+using System;
 
 namespace DerbyManagement.App.ViewModels
 {
     public class RacerDetailViewModel : ViewModelBase
     {
         private IDerbyDataService _derbyDataService;
-        private IDialogService _dialogService;
         private bool _isLoading;
+        private Racer _selectedRacer { get; set; }
 
         public ICommand SaveCommand { get; set; }
         public ICommand CancelCommand { get; set; }
 
-        public Racer SelectedRacer { get; set; }
-
         public int CarNumber
         {
-            get { return SelectedRacer.CarNumber; }
+            get { return _selectedRacer.CarNumber; }
             set
             {
-                SelectedRacer.CarNumber = value;
+                _selectedRacer.CarNumber = value;
                 SetRacerDirty();
-                RaisePropertyChanged("SelectedRacer");
+                RaisePropertyChanged("_selectedRacer");
             }
         }
 
         public string CarName
         {
-            get { return SelectedRacer.CarName; }
+            get { return _selectedRacer.CarName; }
             set
             {
-                SelectedRacer.CarName = value;
+                _selectedRacer.CarName = value;
                 SetRacerDirty();
-                RaisePropertyChanged("SelectedRacer");
+                RaisePropertyChanged("_selectedRacer");
             }
         }
 
         public string OwnerFirstName
         {
-            get { return SelectedRacer.OwnerFirstName; }
+            get { return _selectedRacer.OwnerFirstName; }
             set
             {
-                SelectedRacer.OwnerFirstName = value;
+                _selectedRacer.OwnerFirstName = value;
                 SetRacerDirty();
-                RaisePropertyChanged("SelectedRacer");
+                RaisePropertyChanged("OwnerFirstName");
             }
         }
 
         public string OwnerLastName
         {
-            get { return SelectedRacer.OwnerLastName; }
+            get { return _selectedRacer.OwnerLastName; }
             set
             {
-                SelectedRacer.OwnerLastName = value;
+                _selectedRacer.OwnerLastName = value;
                 SetRacerDirty();
-                RaisePropertyChanged("SelectedRacer");
+                RaisePropertyChanged("_selectedRacer");
             }
         }
 
         public ObservableCollection<Division> Divisions
         {
-            get { return SelectedRacer.Divisions.ToObservableCollection(); }
+            get { return _selectedRacer.Divisions.ToObservableCollection(); }
             set
             {
-                SelectedRacer.Divisions = value.ToList();
+                _selectedRacer.Divisions = value.ToList();
                 SetRacerDirty();
-                RaisePropertyChanged("SelectedRacer");
+                RaisePropertyChanged("_selectedRacer");
             }
         }
 
-        public RacerDetailViewModel(IDerbyDataService derbyDataService, IDialogService dialogService)
-        {   
+        public RacerDetailViewModel(IDerbyDataService derbyDataService)
+        {
             _derbyDataService = derbyDataService;
-            _dialogService = dialogService;
 
             Messenger.Default.Register<Racer>(this, OnRacerRecieved);
 
@@ -89,13 +87,13 @@ namespace DerbyManagement.App.ViewModels
         private void OnRacerRecieved(Racer racer)
         {
             _isLoading = true;
-            SelectedRacer = racer;
+            _selectedRacer = racer;
             _isLoading = false;
         }
 
         private bool CanSaveRacer(object obj)
         {
-            return SelectedRacer.IsDirty;
+            return _selectedRacer.IsDirty;
         }
 
         private void SaveRacer(object racer)
@@ -119,7 +117,7 @@ namespace DerbyManagement.App.ViewModels
         {
             if (!_isLoading)
             {
-                SelectedRacer.IsDirty = true;
+                _selectedRacer.IsDirty = true;
             }
         }
 

@@ -32,7 +32,7 @@ namespace DerbyManagement.App.ViewModels
             set
             {
                 selectedRacer = value;
-                RaisePropertyChanged("SelectedRacer");
+                RaisePropertyChanged("_selectedRacer");
             }
         }
 

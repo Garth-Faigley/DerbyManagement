@@ -37,6 +37,7 @@ namespace DerbyManagement.Model
         }
 
         [Required]
+        [Range(10, 200)]
         public int CarNumber
         {
             get { return carNumber; }

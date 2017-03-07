@@ -11,7 +11,7 @@ namespace DerbyManagement.App
 
         private static DerbyViewModel derbyViewModel = new DerbyViewModel(derbyDataService);
         private static RacerViewModel racerViewModel = new RacerViewModel(derbyDataService, dialogService);
-        private static RacerDetailViewModel racerDetailViewModel = new RacerDetailViewModel(derbyDataService, dialogService);
+        private static RacerDetailViewModel racerDetailViewModel = new RacerDetailViewModel(derbyDataService);
 
         public static DerbyViewModel DerbyViewModel
         {
