@@ -42,21 +42,12 @@
             </Validation.ErrorTemplate>
         </TextBox>
         <TextBox Grid.Row="1" Grid.Column="1" Margin="5" 
-                 Text="{Binding CarName, Mode=TwoWay}"></TextBox>
+                 Text="{Binding CarName, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"></TextBox>
         <TextBox Grid.Row="2" Grid.Column="1" Margin="5" 
                  Text="{Binding OwnerFirstName, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}">
-            <Validation.ErrorTemplate>
-                <ControlTemplate>
-                    <StackPanel Orientation="Vertical">
-                        <!-- Placeholder for the TextBox itself -->
-                        <AdornedElementPlaceholder x:Name="textBox"/>
-                        <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" Margin="5"/>
-                    </StackPanel>
-                </ControlTemplate>
-            </Validation.ErrorTemplate>
         </TextBox>
         <TextBox Grid.Row="3" Grid.Column="1" Margin="5" 
-                 Text="{Binding OwnerLastName, Mode=TwoWay}"></TextBox>
+                 Text="{Binding OwnerLastName, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"></TextBox>
 
         <ListView Grid.Row="4" Grid.Column="1" Margin="5"
             ItemsSource="{Binding Divisions}">

@@ -7,10 +7,11 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Input;
 using System;
+using System.ComponentModel;
 
 namespace DerbyManagement.App.ViewModels
 {
-    public class RacerDetailViewModel : ViewModelBase
+    public class RacerDetailViewModel : ViewModelBase, IDataErrorInfo
     {
         private IDerbyDataService _derbyDataService;
         private bool _isLoading;
@@ -26,7 +27,7 @@ namespace DerbyManagement.App.ViewModels
             {
                 _selectedRacer.CarNumber = value;
                 SetRacerDirty();
-                RaisePropertyChanged("_selectedRacer");
+                RaisePropertyChanged("CarNumber");
             }
         }
 
@@ -37,7 +38,7 @@ namespace DerbyManagement.App.ViewModels
             {
                 _selectedRacer.CarName = value;
                 SetRacerDirty();
-                RaisePropertyChanged("_selectedRacer");
+                RaisePropertyChanged("CarName");
             }
         }
 
@@ -59,7 +60,7 @@ namespace DerbyManagement.App.ViewModels
             {
                 _selectedRacer.OwnerLastName = value;
                 SetRacerDirty();
-                RaisePropertyChanged("_selectedRacer");
+                RaisePropertyChanged("OwnerLastName");
             }
         }
 
@@ -70,7 +71,26 @@ namespace DerbyManagement.App.ViewModels
             {
                 _selectedRacer.Divisions = value.ToList();
                 SetRacerDirty();
-                RaisePropertyChanged("_selectedRacer");
+                RaisePropertyChanged("Divisions");
+            }
+        }
+
+        public string Error
+        {
+            get { throw new NotSupportedException("Not supported"); }
+        }
+
+        public string this[string propertyName]
+        {
+            get
+            {
+                if (propertyName.Equals("OwnerFirstName"))
+                {
+                    if (OwnerFirstName == "Biff")
+                        return "Owner First Name cannot be Biff.";
+                }
+
+                return _selectedRacer[propertyName];
             }
         }
 

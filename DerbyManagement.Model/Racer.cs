@@ -1,12 +1,11 @@
 ﻿using DerbyManagement.Model.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace DerbyManagement.Model
 {
-    public class Racer : INotifyPropertyChanged, IModificationHistory
+    public class Racer : ModelBase, IModificationHistory
     {
         public Racer()
         {
@@ -31,6 +30,7 @@ namespace DerbyManagement.Model
             get { return racerId; }
             set
             {
+                if (value == racerId) return;
                 racerId = value;
                 RaisePropertyChanged("RacerId");
             }
@@ -43,6 +43,7 @@ namespace DerbyManagement.Model
             get { return carNumber; }
             set
             {
+                if (value == carNumber) return;
                 carNumber = value;
                 RaisePropertyChanged("CarNumber");
             }
@@ -55,6 +56,7 @@ namespace DerbyManagement.Model
             get { return carName; }
             set
             {
+                if (value == carName) return;
                 carName = value;
                 RaisePropertyChanged("CarName");
             }
@@ -67,6 +69,7 @@ namespace DerbyManagement.Model
             get { return ownerLastName; }
             set
             {
+                if (value == ownerLastName) return;
                 ownerLastName = value;
                 RaisePropertyChanged("OwnerLastName");
             }
@@ -79,6 +82,7 @@ namespace DerbyManagement.Model
             get { return ownerFirstName; }
             set
             {
+                if (value == ownerFirstName) return;
                 ownerFirstName = value;
                 RaisePropertyChanged("OwnerFirstName");
             }
@@ -90,6 +94,7 @@ namespace DerbyManagement.Model
             get { return divisions; }
             set
             {
+                if (value == divisions) return;
                 divisions = value;
                 RaisePropertyChanged("Divisions");
             }
@@ -100,6 +105,7 @@ namespace DerbyManagement.Model
             get { return runs; }
             set
             {
+                if (value == runs) return;
                 runs = value;
                 RaisePropertyChanged("Runs");
             }
@@ -110,6 +116,7 @@ namespace DerbyManagement.Model
             get { return dateModified; }
             set
             {
+                if (value == dateModified) return;
                 dateModified = value;
                 RaisePropertyChanged("DateModified");
             }
@@ -120,6 +127,7 @@ namespace DerbyManagement.Model
             get { return dateCreated; }
             set
             {
+                if (value == dateCreated) return;
                 dateCreated = value;
                 RaisePropertyChanged("DateCreated");
             }
@@ -130,18 +138,11 @@ namespace DerbyManagement.Model
             get { return isDirty; }
             set
             {
+                if (value == isDirty) return;
                 isDirty = value;
                 RaisePropertyChanged("IsDirty");
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 }
