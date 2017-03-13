@@ -1,12 +1,11 @@
 ﻿using DerbyManagement.Model.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace DerbyManagement.Model
 {
-    public class Division : INotifyPropertyChanged, IModificationHistory
+    public class Division : ModelBase, IModificationHistory
     {
         public Division()
         {
@@ -153,13 +152,5 @@ namespace DerbyManagement.Model
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 }

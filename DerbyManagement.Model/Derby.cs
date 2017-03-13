@@ -1,12 +1,11 @@
 ﻿using DerbyManagement.Model.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace DerbyManagement.Model
 {
-    public class Derby : INotifyPropertyChanged, IModificationHistory
+    public class Derby : ModelBase, IModificationHistory
     {
         public Derby()
         {
@@ -125,15 +124,6 @@ namespace DerbyManagement.Model
             {
                 isDirty = value;
                 RaisePropertyChanged("IsDirty");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
 

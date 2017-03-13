@@ -1,11 +1,10 @@
 ﻿using DerbyManagement.Model.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace DerbyManagement.Model
 {
-    public class Heat : INotifyPropertyChanged, IModificationHistory
+    public class Heat : ModelBase, IModificationHistory
     {
         public Heat()
         {
@@ -107,13 +106,5 @@ namespace DerbyManagement.Model
             }
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void RaisePropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
     }
 }

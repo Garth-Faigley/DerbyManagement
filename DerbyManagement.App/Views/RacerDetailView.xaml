@@ -65,11 +65,9 @@
         </ListView>
         <StackPanel Grid.Row="5" Grid.Column="1" Margin="5" 
                     HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button Content="Save and Add Another Racer"></Button>
-            <Button Content="Save and Close" Command="{Binding SaveCommand}">
-            </Button>
-            <Button Content="Cancel" Command="{Binding CancelCommand}">
-            </Button>
+            <Button Content="Save and Add Another Racer" Command="{Binding SaveAndAddCommand}"></Button>
+            <Button Content="Save and Close" Command="{Binding SaveCommand}"></Button>
+            <Button Content="Cancel" Command="{Binding CancelCommand}"></Button>
         </StackPanel>
     </Grid>
 </controls:MetroWindow>

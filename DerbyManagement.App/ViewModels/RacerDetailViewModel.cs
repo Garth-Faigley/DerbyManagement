@@ -18,6 +18,7 @@ namespace DerbyManagement.App.ViewModels
         private Racer _selectedRacer { get; set; }
 
         public ICommand SaveCommand { get; set; }
+        public ICommand SaveAndAddCommand { get; set; }
         public ICommand CancelCommand { get; set; }
 
         public int CarNumber
@@ -84,13 +85,19 @@ namespace DerbyManagement.App.ViewModels
         {
             get
             {
+                var result = string.Empty;
+
                 if (propertyName.Equals("OwnerFirstName"))
                 {
                     if (OwnerFirstName == "Biff")
-                        return "Owner First Name cannot be Biff.";
+                        result = "Owner First Name cannot be Biff.";
                 }
 
-                return _selectedRacer[propertyName];
+                if (result == string.Empty) 
+                    result = _selectedRacer[propertyName];
+
+                CanSave = result == string.Empty;
+                return result;
             }
         }
 
@@ -101,6 +108,7 @@ namespace DerbyManagement.App.ViewModels
             Messenger.Default.Register<Racer>(this, OnRacerRecieved);
 
             SaveCommand = new CustomCommand(SaveRacer, CanSaveRacer);
+            SaveAndAddCommand = new CustomCommand(SaveAndAddRacer, CanSaveRacer);
             CancelCommand = new CustomCommand(CancelRacer, CanCancel);
         }
 
@@ -113,13 +121,21 @@ namespace DerbyManagement.App.ViewModels
 
         private bool CanSaveRacer(object obj)
         {
-            return _selectedRacer.IsDirty;
+            return _selectedRacer.IsDirty && CanSave;
         }
 
         private void SaveRacer(object racer)
         {
             _derbyDataService.Save();
             Messenger.Default.Send<UpdateListMessage>(new UpdateListMessage());
+        }
+
+        private void SaveAndAddRacer(object obj)
+        {
+            _derbyDataService.Save();
+
+            Racer newRacer = _derbyDataService.CreateRacer();
+            _selectedRacer = newRacer;
         }
 
         private void CancelRacer(object obj)
