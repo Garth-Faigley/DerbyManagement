@@ -8,6 +8,7 @@ using System.Linq;
 using System.Windows.Input;
 using System;
 using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace DerbyManagement.App.ViewModels
 {
@@ -15,8 +16,11 @@ namespace DerbyManagement.App.ViewModels
     {
         private IDerbyDataService _derbyDataService;
         private bool _isLoading;
+        private List<Division> _divisions;
         private Racer _selectedRacer { get; set; }
 
+        public ICommand AddDivisionCommand { get; set; }
+        public ICommand RemoveDivisionCommand { get; set; }
         public ICommand SaveCommand { get; set; }
         public ICommand SaveAndAddCommand { get; set; }
         public ICommand CancelCommand { get; set; }
@@ -65,7 +69,12 @@ namespace DerbyManagement.App.ViewModels
             }
         }
 
-        public ObservableCollection<Division> Divisions
+        public List<Division> Divisions
+        {
+            get { return _divisions; }
+        }
+
+        public ObservableCollection<Division> RacerDivisions
         {
             get { return _selectedRacer.Divisions.ToObservableCollection(); }
             set
@@ -87,6 +96,8 @@ namespace DerbyManagement.App.ViewModels
             {
                 var result = string.Empty;
 
+                // TODO - add proper validation now that I know this will work
+
                 if (propertyName.Equals("OwnerFirstName"))
                 {
                     if (OwnerFirstName == "Biff")
@@ -105,8 +116,13 @@ namespace DerbyManagement.App.ViewModels
         {
             _derbyDataService = derbyDataService;
 
+            var currentDerby = _derbyDataService.GetCurrentDerby();
+            _divisions = _derbyDataService.GatAllDivisionsExceptChampionship(currentDerby.DerbyId);
+
             Messenger.Default.Register<Racer>(this, OnRacerRecieved);
 
+            AddDivisionCommand = new CustomCommand(AddDivision, CanAddRemoveDivision);
+            RemoveDivisionCommand = new CustomCommand(RemoveDivision, CanAddRemoveDivision);
             SaveCommand = new CustomCommand(SaveRacer, CanSaveRacer);
             SaveAndAddCommand = new CustomCommand(SaveAndAddRacer, CanSaveRacer);
             CancelCommand = new CustomCommand(CancelRacer, CanCancel);
@@ -119,6 +135,7 @@ namespace DerbyManagement.App.ViewModels
             _isLoading = false;
         }
 
+        #region " Command Handlers "
         private bool CanSaveRacer(object obj)
         {
             return _selectedRacer.IsDirty && CanSave;
@@ -148,6 +165,32 @@ namespace DerbyManagement.App.ViewModels
         {
             return true;
         }
+
+        private void AddDivision(object obj)
+        {
+            if (!(obj is Division))
+                throw new ArgumentException("Invalid division");
+
+            var divisionToAdd = (Division)obj;
+            _selectedRacer.Divisions.Add(divisionToAdd);
+            RacerDivisions = _selectedRacer.Divisions.ToObservableCollection<Division>();
+        }
+
+        private void RemoveDivision(object obj)
+        {
+            if (!(obj is Division))
+                throw new ArgumentException("Invalid division");
+
+            var divisionToRemove = (Division)obj;
+            _selectedRacer.Divisions.Remove(divisionToRemove);
+            RacerDivisions = _selectedRacer.Divisions.ToObservableCollection<Division>();
+        }
+
+        private bool CanAddRemoveDivision(object obj)
+        {
+            return true;
+        }
+        #endregion
 
         private void SetRacerDirty()
         {

@@ -49,20 +49,40 @@
         <TextBox Grid.Row="3" Grid.Column="1" Margin="5" 
                  Text="{Binding OwnerLastName, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"></TextBox>
 
-        <ListView Grid.Row="4" Grid.Column="1" Margin="5"
-            ItemsSource="{Binding Divisions}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Name}"></TextBlock>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <DataGrid Grid.Row="4" Grid.Column="1" Margin="5" ItemsSource="{Binding Divisions}" 
+                  AutoGenerateColumns="False" CanUserAddRows="False" HeadersVisibility="None">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Name}"></DataGridTextColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5">
+                                    <CheckBox.IsChecked>
+                                        <MultiBinding Converter="{StaticResource localDivisionToBooleanConverter}" 
+                                                      Mode="OneWay">
+                                            <Binding Path="."></Binding>
+                                            <Binding Path="DataContext.RacerDivisions" 
+                                                     RelativeSource="{RelativeSource AncestorType=Window}"></Binding>
+                                        </MultiBinding>
+                                    </CheckBox.IsChecked>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger EventName="Checked">
+                                            <i:InvokeCommandAction Command="{Binding DataContext.AddDivisionCommand, RelativeSource={RelativeSource AncestorType=Window}}" 
+                                                                   CommandParameter="{Binding Path=.}" />
+                                        </i:EventTrigger>
+                                        <i:EventTrigger EventName="Unchecked">
+                                            <i:InvokeCommandAction Command="{Binding DataContext.RemoveDivisionCommand, RelativeSource={RelativeSource AncestorType=Window}}" 
+                                                                   CommandParameter="{Binding Path=.}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </CheckBox>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
         <StackPanel Grid.Row="5" Grid.Column="1" Margin="5" 
                     HorizontalAlignment="Right" Orientation="Horizontal">
             <Button Content="Save and Add Another Racer" Command="{Binding SaveAndAddCommand}"></Button>
