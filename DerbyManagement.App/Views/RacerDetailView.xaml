@@ -28,19 +28,8 @@
         <Label Grid.Row="2" Content="Owner First Name" FontWeight="Bold" Margin="5"></Label>
         <Label Grid.Row="3" Content="Owner Last Name" FontWeight="Bold" Margin="5"></Label>
         <Label Grid.Row="4" Content="Divisions" FontWeight="Bold" Margin="5"></Label>
-        <TextBox Grid.Row="0" Grid.Column="1" Margin="5" 
-                 Text="{Binding CarNumber, Mode=TwoWay}" 
-                 Width="60" HorizontalAlignment="Left">
-            <Validation.ErrorTemplate>
-                <ControlTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <!-- Placeholder for the TextBox itself -->
-                        <AdornedElementPlaceholder x:Name="textBox"/>
-                        <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red" Margin="5"/>
-                    </StackPanel>
-                </ControlTemplate>
-            </Validation.ErrorTemplate>
-        </TextBox>
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="5"  Width="60" HorizontalAlignment="Left"
+                 Text="{Binding CarNumber, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"></TextBox>
         <TextBox Grid.Row="1" Grid.Column="1" Margin="5" 
                  Text="{Binding CarName, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"></TextBox>
         <TextBox Grid.Row="2" Grid.Column="1" Margin="5" 
@@ -48,9 +37,9 @@
         </TextBox>
         <TextBox Grid.Row="3" Grid.Column="1" Margin="5" 
                  Text="{Binding OwnerLastName, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"></TextBox>
-
-        <DataGrid Grid.Row="4" Grid.Column="1" Margin="5" ItemsSource="{Binding Divisions}" 
-                  AutoGenerateColumns="False" CanUserAddRows="False" HeadersVisibility="None">
+        <DataGrid Grid.Row="4" Grid.Column="1" Margin="5" ItemsSource="{Binding Divisions, NotifyOnValidationError=True, ValidatesOnDataErrors=True}" 
+                  AutoGenerateColumns="False" CanUserAddRows="False" HeadersVisibility="None" Padding="5"
+                  ToolTip="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={x:Static RelativeSource.Self}}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}"></DataGridTextColumn>
                 <DataGridTemplateColumn>

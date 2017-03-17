@@ -47,6 +47,11 @@ namespace DerbyManagement.App.Services
             _repository.DeleteRacer(racer);
         }
 
+        public int CheckCarNumberUnique(int derbyId, int racerId, int carNumber)
+        {
+            return _repository.CheckCarNumberUnique(derbyId, racerId, carNumber);
+        }
+
         #endregion
 
         public void Save()

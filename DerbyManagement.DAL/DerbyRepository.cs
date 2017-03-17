@@ -54,6 +54,13 @@ namespace DerbyManagement.DAL
             Save();
         }
 
+        public int CheckCarNumberUnique(int derbyId, int racerId, int carNumber)
+        {
+            return _context.Racers
+                .Where(r => r.RacerId != racerId && r.CarNumber == carNumber &&
+                            r.Divisions.Any(d => d.DerbyId == derbyId))
+                .Count();
+        }
         #endregion
 
         public void Save()
@@ -69,11 +76,14 @@ namespace DerbyManagement.DAL
                 switch (entry.State)
                 {
                     case EntityState.Modified:
-                        entry.State = EntityState.Unchanged; break;
+                        entry.State = EntityState.Unchanged;
+                        break;
                     case EntityState.Added:
-                        entry.State = EntityState.Detached; break;
+                        entry.State = EntityState.Detached;
+                        break;
                     case EntityState.Deleted:
-                        entry.Reload(); break;
+                        entry.Reload();
+                        break;
                     default: break;
                 }
             }

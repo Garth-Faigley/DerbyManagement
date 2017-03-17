@@ -16,6 +16,7 @@ namespace DerbyManagement.App.Services
         List<Racer> GetRacersByDerbyIdWithDivisions(int derbyId);
         Racer CreateRacer();
         void DeleteRacer(Racer racer);
+        int CheckCarNumberUnique(int derbyId, int racerId, int carNumber);
 
         void Save();
         void Cancel();

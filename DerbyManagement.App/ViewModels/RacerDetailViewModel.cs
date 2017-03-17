@@ -17,6 +17,7 @@ namespace DerbyManagement.App.ViewModels
         private IDerbyDataService _derbyDataService;
         private bool _isLoading;
         private List<Division> _divisions;
+        private List<Division> _originalRacerDivisions;
         private Racer _selectedRacer { get; set; }
 
         public ICommand AddDivisionCommand { get; set; }
@@ -96,12 +97,13 @@ namespace DerbyManagement.App.ViewModels
             {
                 var result = string.Empty;
 
-                // TODO - add proper validation now that I know this will work
-
-                if (propertyName.Equals("OwnerFirstName"))
+                if (propertyName.Equals("CarNumber"))
                 {
-                    if (OwnerFirstName == "Biff")
-                        result = "Owner First Name cannot be Biff.";
+                    var derbyId = _divisions[0].DerbyId;
+                    var numberOfCarsWithThisNumber = _derbyDataService.CheckCarNumberUnique(derbyId, 
+                        _selectedRacer.RacerId, CarNumber);
+                    if (numberOfCarsWithThisNumber > 0)
+                        result = "This car number is already taken.  Please select another number.";
                 }
 
                 if (result == string.Empty) 
@@ -132,6 +134,7 @@ namespace DerbyManagement.App.ViewModels
         {
             _isLoading = true;
             _selectedRacer = racer;
+            _originalRacerDivisions = _selectedRacer.Divisions;
             _isLoading = false;
         }
 
@@ -157,6 +160,7 @@ namespace DerbyManagement.App.ViewModels
 
         private void CancelRacer(object obj)
         {
+            _selectedRacer.Divisions = _originalRacerDivisions;
             _derbyDataService.Cancel();
             Messenger.Default.Send<UpdateListMessage>(new UpdateListMessage());
         }
@@ -172,8 +176,10 @@ namespace DerbyManagement.App.ViewModels
                 throw new ArgumentException("Invalid division");
 
             var divisionToAdd = (Division)obj;
-            _selectedRacer.Divisions.Add(divisionToAdd);
-            RacerDivisions = _selectedRacer.Divisions.ToObservableCollection<Division>();
+            var racerDivisions = RacerDivisions;
+
+            racerDivisions.Add(divisionToAdd);
+            RacerDivisions = racerDivisions;
         }
 
         private void RemoveDivision(object obj)
@@ -182,8 +188,10 @@ namespace DerbyManagement.App.ViewModels
                 throw new ArgumentException("Invalid division");
 
             var divisionToRemove = (Division)obj;
-            _selectedRacer.Divisions.Remove(divisionToRemove);
-            RacerDivisions = _selectedRacer.Divisions.ToObservableCollection<Division>();
+            var racerDivisions = RacerDivisions;
+
+            racerDivisions.Remove(divisionToRemove);
+            RacerDivisions = racerDivisions;
         }
 
         private bool CanAddRemoveDivision(object obj)

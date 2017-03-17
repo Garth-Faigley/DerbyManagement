@@ -37,7 +37,7 @@ namespace DerbyManagement.Model
         }
 
         [Required]
-        [Range(10, 200)]
+        [Range(10, 200, ErrorMessage = "Car Number must be between 10 and 200")]
         public int CarNumber
         {
             get { return carNumber; }
