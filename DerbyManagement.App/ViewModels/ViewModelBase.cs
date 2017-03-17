@@ -5,15 +5,15 @@ namespace DerbyManagement.App.ViewModels
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        private bool _canSave;
+        private bool _isValid;
 
-        public bool CanSave
+        public bool IsValid
         {
-            get { return _canSave; }
+            get { return _isValid; }
             set
             {
-                _canSave = value;
-                RaisePropertyChanged("CanSave");
+                _isValid = value;
+                RaisePropertyChanged("IsValid");
             }
         }
 

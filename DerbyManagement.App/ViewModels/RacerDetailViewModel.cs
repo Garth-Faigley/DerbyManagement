@@ -109,7 +109,7 @@ namespace DerbyManagement.App.ViewModels
                 if (result == string.Empty) 
                     result = _selectedRacer[propertyName];
 
-                CanSave = result == string.Empty;
+                IsValid = result == string.Empty;
                 return result;
             }
         }
@@ -121,7 +121,7 @@ namespace DerbyManagement.App.ViewModels
             var currentDerby = _derbyDataService.GetCurrentDerby();
             _divisions = _derbyDataService.GatAllDivisionsExceptChampionship(currentDerby.DerbyId);
 
-            Messenger.Default.Register<Racer>(this, OnRacerRecieved);
+            Messenger.Default.Register<Racer>(this, LoadRacer);
 
             AddDivisionCommand = new CustomCommand(AddDivision, CanAddRemoveDivision);
             RemoveDivisionCommand = new CustomCommand(RemoveDivision, CanAddRemoveDivision);
@@ -130,7 +130,7 @@ namespace DerbyManagement.App.ViewModels
             CancelCommand = new CustomCommand(CancelRacer, CanCancel);
         }
 
-        private void OnRacerRecieved(Racer racer)
+        private void LoadRacer(Racer racer)
         {
             _isLoading = true;
             _selectedRacer = racer;
@@ -141,7 +141,7 @@ namespace DerbyManagement.App.ViewModels
         #region " Command Handlers "
         private bool CanSaveRacer(object obj)
         {
-            return _selectedRacer.IsDirty && CanSave;
+            return _selectedRacer.IsDirty && IsValid;
         }
 
         private void SaveRacer(object racer)
@@ -155,7 +155,8 @@ namespace DerbyManagement.App.ViewModels
             _derbyDataService.Save();
 
             Racer newRacer = _derbyDataService.CreateRacer();
-            _selectedRacer = newRacer;
+            LoadRacer(newRacer);
+            RaisePropertyChanged(string.Empty);
         }
 
         private void CancelRacer(object obj)

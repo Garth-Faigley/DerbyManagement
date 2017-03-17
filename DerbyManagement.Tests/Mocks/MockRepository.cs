@@ -45,6 +45,11 @@ namespace DerbyManagement.Tests.Mocks
         {
             throw new NotImplementedException();
         }
+
+        public int CheckCarNumberUnique(int derbyId, int racerId, int carNumber)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         public void Cancel()
@@ -56,5 +61,6 @@ namespace DerbyManagement.Tests.Mocks
         {
             // Don't need to do anything in test.
         }
+
     }
 }
