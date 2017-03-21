@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
+using System;
 
 namespace DerbyManagement.DAL
 {
@@ -26,11 +27,28 @@ namespace DerbyManagement.DAL
         }
         #endregion
 
+        #region " Division "
         public List<Division> GatAllDivisionsExceptChampionship(int derbyId)
         {
             return _context.Divisions.Where(d => d.DerbyId == derbyId && d.IsChampionship == false)
                 .OrderBy(d => d.Sequence).ToList();
         }
+
+        public Division CreateDivision()
+        {
+            var division = new Division();
+            _context.Divisions.Add(division);
+            return division;
+        }
+
+        public int CheckSequenceNumberUnique(int derbyId, int divisionId, int sequenceNumber)
+        {
+            return _context.Divisions
+                .Where(r => r.DivisionId != divisionId && r.DerbyId == derbyId &&
+                            r.Sequence == sequenceNumber)
+                .Count();
+        }
+        #endregion
 
         #region " Racer "
 

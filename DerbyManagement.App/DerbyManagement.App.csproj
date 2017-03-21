@@ -86,6 +86,7 @@
     <Compile Include="Utility\Messenger.cs" />
     <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\DerbyViewModel.cs" />
+    <Compile Include="ViewModels\DivisionDetailViewModel.cs" />
     <Compile Include="ViewModels\RacerDetailViewModel.cs" />
     <Compile Include="ViewModels\RacerViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />

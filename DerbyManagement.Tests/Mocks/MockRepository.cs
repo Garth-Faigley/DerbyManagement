@@ -28,6 +28,16 @@ namespace DerbyManagement.Tests.Mocks
         {
             throw new NotImplementedException();
         }
+
+        public Division CreateDivision()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int CheckSequenceNumberUnique(int derbyId, int divisionId, int sequenceNumber)
+        {
+            throw new NotImplementedException();
+        }
         #endregion
 
         #region " Racer " 

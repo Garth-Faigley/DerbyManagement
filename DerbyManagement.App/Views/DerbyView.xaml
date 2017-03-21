@@ -52,7 +52,7 @@
                                     Maximum="10"
                                     Value="{Binding Derby.Lanes}" />
         </StackPanel>
-        
+
         <StackPanel Grid.Column="2" Grid.Row="1" Margin="0,10,0,0">
             <TextBlock Margin="5" FontWeight="Bold">Run Championship</TextBlock>
             <CheckBox Margin="5"
@@ -68,7 +68,11 @@
                                     Value="{Binding Derby.DivisionPlacesToAdvance}" />
         </StackPanel>
         <StackPanel Grid.ColumnSpan="3" Grid.Row="2" Margin="0,10,0,0">
-            <TextBlock Margin="5" FontWeight="Bold">Divisions</TextBlock>
+            <DockPanel LastChildFill="True" HorizontalAlignment="Stretch">
+                <TextBlock Margin="5" FontWeight="Bold">Divisions</TextBlock>
+                <Button HorizontalAlignment="Right" Content="Add New Division" 
+                        Command="{Binding AddCommand}"></Button>
+            </DockPanel>
             <DataGrid Margin="5"
                       HeadersVisibility="Column"
                       AutoGenerateColumns="False"
@@ -81,6 +85,32 @@
                     <DataGridTextColumn Binding="{Binding Name}" Header="Name" />
                     <DataGridCheckBoxColumn Binding="{Binding IncludeInChampionship}" Header="Include in Championship"></DataGridCheckBoxColumn>
                     <DataGridCheckBoxColumn Binding="{Binding IsChampionship}" Header="Is The Championship"></DataGridCheckBoxColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Button Command="{Binding Path=DataContext.EditCommand,       
+                                                  RelativeSource  = {RelativeSource FindAncestor,
+                                                  AncestorType ={x:Type DataGrid}}}"
+                                        Content="Edit">
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <Button Command="{Binding Path=DataContext.DeleteCommand,       
+                                                  RelativeSource  = {RelativeSource FindAncestor,
+                                                  AncestorType ={x:Type DataGrid}}}"
+                                        Content="Delete">
+                                    </Button>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                 </DataGrid.Columns>
                 <DataGrid.Style>
                     <Style BasedOn="{StaticResource MetroDataGrid}" TargetType="{x:Type DataGrid}">

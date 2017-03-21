@@ -20,13 +20,6 @@ namespace DerbyManagement.App.ViewModels
             }
         }
 
-        public string Test
-        {
-            get { return "test"; }
-            set { string test = value; }
-        }
-
-
         public DerbyViewModel(IDerbyDataService derbyDataService)
         {
             _derbyDataService = derbyDataService;

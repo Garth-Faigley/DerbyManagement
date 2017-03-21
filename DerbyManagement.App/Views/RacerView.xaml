@@ -25,19 +25,43 @@
         <DataGrid Grid.Row="1" Grid.Column="1"
                   Margin="5,10,5,5" 
                   HorizontalAlignment="Center"
-                      HeadersVisibility="Column"
-                      AutoGenerateColumns="False"
-                      ItemsSource="{Binding Racers}"
-                      SelectedItem="{Binding SelectedRacer}"
-                      SelectionUnit="FullRow" 
-                      CanUserAddRows="False" 
-                      CanUserDeleteRows="False">
+                  HeadersVisibility="Column"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding Racers}"
+                  SelectedItem="{Binding SelectedRacer}"
+                  SelectionUnit="FullRow"
+                  CanUserAddRows="False" 
+                  CanUserDeleteRows="False" >
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding CarNumber}" Header="Number" />
-                <DataGridTextColumn Binding="{Binding CarName}" Header="Car Name" />
-                <DataGridTextColumn Binding="{Binding OwnerFirstName}" Header="Owner First Name" />
-                <DataGridTextColumn Binding="{Binding OwnerLastName}" Header="Owner Last Name" />
-                <DataGridTextColumn Binding="{Binding Divisions, Converter={StaticResource localDivisionListToStringConverter}}" Header="Division(s)" />
+                <DataGridTextColumn Binding="{Binding CarName}" Header="Car Name">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Padding" Value="10" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding OwnerFirstName}" Header="Owner First Name">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Padding" Value="10" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding OwnerLastName}" Header="Owner Last Name">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Padding" Value="10" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Divisions, Converter={StaticResource localDivisionListToStringConverter}}" Header="Division(s)">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="Padding" Value="10" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

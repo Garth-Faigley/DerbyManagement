@@ -25,10 +25,22 @@ namespace DerbyManagement.App.Services
         }
         #endregion
 
+        #region " Division "
         public List<Division> GatAllDivisionsExceptChampionship(int derbyId)
         {
             return _repository.GatAllDivisionsExceptChampionship(derbyId);
         }
+
+        public Division CreateDivision()
+        {
+            return _repository.CreateDivision();
+        }
+
+        public int CheckSequenceNumberUnique(int derbyId, int divisionId, int sequenceNumber)
+        {
+            return _repository.CheckSequenceNumberUnique(derbyId, divisionId, sequenceNumber);
+        }
+        #endregion
 
         #region " Racers "
 
