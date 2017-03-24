@@ -7,6 +7,9 @@ namespace DerbyManagement.App.Services
         void CloseRacerDetailDialog();
         void ShowRacerDetailDialog();
 
+        void CloseDivisionDetailDialog();
+        void ShowDivisionDetailDialog();
+
         // For the MahApps dialogs to work, need to ass these two attributes to the hosting view: 
         //     xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro" 
         //     Dialog:DialogParticipation.Register="{Binding}"

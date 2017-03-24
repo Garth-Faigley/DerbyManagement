@@ -34,6 +34,11 @@ namespace DerbyManagement.Tests.Mocks
             throw new NotImplementedException();
         }
 
+        public void DeleteDivision(Division division)
+        {
+            throw new NotImplementedException();
+        }
+
         public int CheckSequenceNumberUnique(int derbyId, int divisionId, int sequenceNumber)
         {
             throw new NotImplementedException();

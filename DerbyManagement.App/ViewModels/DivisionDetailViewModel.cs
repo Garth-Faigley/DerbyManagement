@@ -3,16 +3,12 @@ using DerbyManagement.App.Services;
 using DerbyManagement.App.Utility;
 using DerbyManagement.Model;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace DerbyManagement.App.ViewModels
 {
-    class DivisionDetailViewModel : ViewModelBase, IDataErrorInfo
+    public class DivisionDetailViewModel : ViewModelBase, IDataErrorInfo
     {
         private IDerbyDataService _derbyDataService;
         private bool _isLoading;

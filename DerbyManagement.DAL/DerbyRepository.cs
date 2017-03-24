@@ -41,6 +41,12 @@ namespace DerbyManagement.DAL
             return division;
         }
 
+        public void DeleteDivision(Division division)
+        {
+            _context.Divisions.Remove(division);
+            Save();
+        }
+
         public int CheckSequenceNumberUnique(int derbyId, int divisionId, int sequenceNumber)
         {
             return _context.Divisions

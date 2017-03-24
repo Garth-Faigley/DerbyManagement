@@ -8,6 +8,7 @@ namespace DerbyManagement.App.Services
     public class DialogService : IDialogService
     {
         MetroWindow racerDetailView = null;
+        MetroWindow divisionDetailView = null;
 
         public void CloseRacerDetailDialog()
         {
@@ -19,6 +20,18 @@ namespace DerbyManagement.App.Services
         {
             racerDetailView = new RacerDetailView();
             racerDetailView.ShowDialog();
+        }
+
+        public void CloseDivisionDetailDialog()
+        {
+            if (divisionDetailView != null)
+                divisionDetailView.Close();
+        }
+
+        public void ShowDivisionDetailDialog()
+        {
+            divisionDetailView = new DivisionDetailView();
+            divisionDetailView.ShowDialog();
         }
 
         public void ShowMessage(object context, string title, string message)

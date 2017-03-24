@@ -12,6 +12,7 @@ namespace DerbyManagement.App.Services
         // Division
         List<Division> GatAllDivisionsExceptChampionship(int derbyId);
         Division CreateDivision();
+        void DeleteDivision(Division division);
         int CheckSequenceNumberUnique(int derbyId, int divisionId, int sequenceNumber);
 
         // Racer

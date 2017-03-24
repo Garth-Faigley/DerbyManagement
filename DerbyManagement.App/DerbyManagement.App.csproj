@@ -93,6 +93,9 @@
     <Compile Include="Views\DerbyView.xaml.cs">
       <DependentUpon>DerbyView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DivisionDetailView.xaml.cs">
+      <DependentUpon>DivisionDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RacerDetailView.xaml.cs">
       <DependentUpon>RacerDetailView.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\DerbyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DivisionDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

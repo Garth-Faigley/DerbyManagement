@@ -36,6 +36,11 @@ namespace DerbyManagement.App.Services
             return _repository.CreateDivision();
         }
 
+        public void DeleteDivision(Division division)
+        {
+            _repository.DeleteDivision(division);
+        }
+
         public int CheckSequenceNumberUnique(int derbyId, int divisionId, int sequenceNumber)
         {
             return _repository.CheckSequenceNumberUnique(derbyId, divisionId, sequenceNumber);
