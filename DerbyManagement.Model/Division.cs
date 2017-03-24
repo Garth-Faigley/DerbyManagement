@@ -65,6 +65,7 @@ namespace DerbyManagement.Model
             }
         }
 
+        [Required]
         [StringLength(255, ErrorMessage = "Division Name maximum length is 255 characters")]
         public string Name
         {

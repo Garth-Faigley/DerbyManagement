@@ -1,7 +1,10 @@
-﻿using DerbyManagement.App.Messages;
+﻿using DerbyManagement.App.Extensions;
+using DerbyManagement.App.Messages;
 using DerbyManagement.App.Services;
 using DerbyManagement.App.Utility;
 using DerbyManagement.Model;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace DerbyManagement.App.ViewModels
@@ -21,6 +24,16 @@ namespace DerbyManagement.App.ViewModels
                 RaisePropertyChanged("Derby");
 
                 // TODO- send message when new derby created
+            }
+        }
+
+        public ObservableCollection<Division> Divisions
+        {
+            get { return derby.Divisions.ToObservableCollection(); }
+            set
+            {
+                derby.Divisions = value.ToList();
+                RaisePropertyChanged("Divisions");
             }
         }
 
@@ -53,13 +66,14 @@ namespace DerbyManagement.App.ViewModels
         private void LoadData()
         {
             Derby = _derbyDataService.GetCurrentDerbyWithDivisions();
+            RaisePropertyChanged("Divisions");
         }
 
         private void LoadCommands()
         {
             EditCommand = new CustomCommand(EditDivision, CanEditDivision);
             AddCommand = new CustomCommand(AddDivision, CanAddDivision);
-            DeleteCommand = new CustomCommand(DeleteRacer, CanDeleteDivision);
+            DeleteCommand = new CustomCommand(DeleteDivision, CanDeleteDivision);
         }
 
         private void OnUpdateListMessageRecieved(UpdateListMessage obj)
@@ -92,12 +106,12 @@ namespace DerbyManagement.App.ViewModels
             return true;
         }
 
-        private async void DeleteRacer(object obj)
+        private async void DeleteDivision(object obj)
         {
             if (await _dialogService.ShowMessageConfirm(this, "Delete Division",
                 "Delete Division " + selectedDivision.Name + "?"))
             {
-                _derbyDataService.DeleteDivision(selectedDivision);
+               _derbyDataService.DeleteDivision(selectedDivision);
                 LoadData();
             }
         }

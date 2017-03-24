@@ -68,6 +68,10 @@
     <Compile Include="Migrations\201703061815496_RacerValidationAndNameSplit.Designer.cs">
       <DependentUpon>201703061815496_RacerValidationAndNameSplit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703241441423_DivisionNameRequired.cs" />
+    <Compile Include="Migrations\201703241441423_DivisionNameRequired.Designer.cs">
+      <DependentUpon>201703241441423_DivisionNameRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -92,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703061815496_RacerValidationAndNameSplit.resx">
       <DependentUpon>201703061815496_RacerValidationAndNameSplit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703241441423_DivisionNameRequired.resx">
+      <DependentUpon>201703241441423_DivisionNameRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

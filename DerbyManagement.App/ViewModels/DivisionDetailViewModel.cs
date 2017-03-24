@@ -14,12 +14,11 @@ namespace DerbyManagement.App.ViewModels
         private bool _isLoading;
 
         public ICommand SaveCommand { get; set; }
-        public ICommand SaveAndAddCommand { get; set; }
         public ICommand CancelCommand { get; set; }
 
         private Division _division;
 
-        public int Order
+        public int Sequence
         {
             get { return _division.Sequence; }
             set
@@ -96,7 +95,6 @@ namespace DerbyManagement.App.ViewModels
             Messenger.Default.Register<Division>(this, LoadDivision);
 
             SaveCommand = new CustomCommand(SaveDivision, CanSave);
-            SaveAndAddCommand = new CustomCommand(SaveAndAddDivision, CanSave);
             CancelCommand = new CustomCommand(CancelDivision, CanCancel);
         }
 
@@ -117,15 +115,6 @@ namespace DerbyManagement.App.ViewModels
         {
             SaveDivision();
             Messenger.Default.Send<UpdateListMessage>(new UpdateListMessage());
-        }
-
-        private void SaveAndAddDivision(object obj)
-        {
-            SaveDivision();
-
-            Division newDivision = _derbyDataService.CreateDivision();
-            LoadDivision(newDivision);
-            RaisePropertyChanged(string.Empty);
         }
 
         private void SaveDivision()

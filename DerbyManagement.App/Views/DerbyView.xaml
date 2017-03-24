@@ -8,6 +8,8 @@
              xmlns:extensions="clr-namespace:DerbyManagement.App.Extensions"    
              xmlns:model="clr-namespace:DerbyManagement.Model;assembly=DerbyManagement.Model"
              xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+             Dialog:DialogParticipation.Register="{Binding}"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300"
              DataContext="{Binding Source={StaticResource mainViewModelLocator},  Path=DerbyViewModel}">
@@ -76,7 +78,8 @@
             <DataGrid Margin="5"
                       HeadersVisibility="Column"
                       AutoGenerateColumns="False"
-                      ItemsSource="{Binding Derby.Divisions}"
+                      ItemsSource="{Binding Divisions, Mode=TwoWay}"
+                      SelectedItem="{Binding SelectedDivision}"
                       SelectionUnit="FullRow" 
                       CanUserAddRows="False" 
                       CanUserDeleteRows="False">
