@@ -33,6 +33,7 @@ namespace DerbyManagement.Model
             }
         }
 
+        [Required]
         [StringLength(255, ErrorMessage = "Derby Name maximum length is 255 characters")]
         public string Name
         {
