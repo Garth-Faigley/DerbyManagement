@@ -54,9 +54,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DerbyTests.cs" />
+    <Compile Include="DivisionDetailViewModelTests.cs" />
     <Compile Include="DivisionTests.cs" />
     <Compile Include="Mocks\MockRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RacerDetailViewModelTests.cs" />
     <Compile Include="RacerTests.cs" />
   </ItemGroup>
   <ItemGroup>

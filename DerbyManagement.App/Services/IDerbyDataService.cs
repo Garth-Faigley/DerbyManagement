@@ -10,7 +10,7 @@ namespace DerbyManagement.App.Services
         Derby GetCurrentDerbyWithDivisions();
 
         // Division
-        List<Division> GatAllDivisionsExceptChampionship(int derbyId);
+        List<Division> GetAllDivisionsExceptChampionship(int derbyId);
         Division CreateDivision();
         void DeleteDivision(Division division);
         int CheckSequenceNumberUnique(int derbyId, int divisionId, int sequenceNumber);

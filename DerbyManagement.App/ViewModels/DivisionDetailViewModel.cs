@@ -98,7 +98,7 @@ namespace DerbyManagement.App.ViewModels
             CancelCommand = new CustomCommand(CancelDivision, CanCancel);
         }
 
-        private void LoadDivision(Division division)
+        public void LoadDivision(Division division)
         {
             _isLoading = true;
             _division = division;

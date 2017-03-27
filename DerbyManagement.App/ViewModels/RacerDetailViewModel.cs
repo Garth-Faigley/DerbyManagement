@@ -119,7 +119,7 @@ namespace DerbyManagement.App.ViewModels
             _derbyDataService = derbyDataService;
 
             var currentDerby = _derbyDataService.GetCurrentDerby();
-            _divisions = _derbyDataService.GatAllDivisionsExceptChampionship(currentDerby.DerbyId);
+            _divisions = _derbyDataService.GetAllDivisionsExceptChampionship(currentDerby.DerbyId);
 
             Messenger.Default.Register<Racer>(this, LoadRacer);
 
@@ -130,7 +130,7 @@ namespace DerbyManagement.App.ViewModels
             CancelCommand = new CustomCommand(CancelRacer, CanCancel);
         }
 
-        private void LoadRacer(Racer racer)
+        public void LoadRacer(Racer racer)
         {
             _isLoading = true;
             _selectedRacer = racer;

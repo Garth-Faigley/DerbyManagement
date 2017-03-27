@@ -26,7 +26,7 @@ namespace DerbyManagement.App.Services
         #endregion
 
         #region " Division "
-        public List<Division> GatAllDivisionsExceptChampionship(int derbyId)
+        public List<Division> GetAllDivisionsExceptChampionship(int derbyId)
         {
             return _repository.GatAllDivisionsExceptChampionship(derbyId);
         }
