@@ -53,13 +53,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DerbyTests.cs" />
-    <Compile Include="DivisionDetailViewModelTests.cs" />
-    <Compile Include="DivisionTests.cs" />
-    <Compile Include="Mocks\MockRepository.cs" />
+    <Compile Include="BllTests\MockSchedulingData.cs" />
+    <Compile Include="ModelTests\DerbyTests.cs" />
+    <Compile Include="ViewModelTests\DivisionDetailViewModelTests.cs" />
+    <Compile Include="ModelTests\DivisionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RacerDetailViewModelTests.cs" />
-    <Compile Include="RacerTests.cs" />
+    <Compile Include="ViewModelTests\RacerDetailViewModelTests.cs" />
+    <Compile Include="ModelTests\RacerTests.cs" />
+    <Compile Include="BllTests\SchedulerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -68,6 +69,10 @@
     <ProjectReference Include="..\DerbyManagement.App\DerbyManagement.App.csproj">
       <Project>{8dfccd32-54c2-47b7-8460-579f93ab16aa}</Project>
       <Name>DerbyManagement.App</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DerbyManagement.BLL\DerbyManagement.BLL.csproj">
+      <Project>{7B0FF6F1-7A76-43D3-A05F-B29F741A2E9D}</Project>
+      <Name>DerbyManagement.BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\DerbyManagement.DAL\DerbyManagement.DAL.csproj">
       <Project>{e123c993-45ca-4688-9db0-13cfe9063682}</Project>
