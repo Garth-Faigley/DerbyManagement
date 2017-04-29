@@ -53,14 +53,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BllTests\MockSchedulingData.cs" />
+    <Compile Include="BllTests\BasicSchedulerTests.cs" />
+    <Compile Include="BllTests\EnhancedSchedulerTests.cs" />
     <Compile Include="ModelTests\DerbyTests.cs" />
     <Compile Include="ViewModelTests\DivisionDetailViewModelTests.cs" />
     <Compile Include="ModelTests\DivisionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModelTests\RacerDetailViewModelTests.cs" />
     <Compile Include="ModelTests\RacerTests.cs" />
-    <Compile Include="BllTests\SchedulerTests.cs" />
+    <Compile Include="BllTests\ChaoticSchedulerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

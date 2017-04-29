@@ -41,19 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Scheduler.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="IScheduler.cs" />
+    <Compile Include="Classes\RaceSchedule.cs" />
+    <Compile Include="Classes\RunSetInformation.cs" />
+    <Compile Include="RaceScheduler.cs" />
+    <Compile Include="Schedulers\BasicLaneRotation.cs" />
+    <Compile Include="Schedulers\ChaoticLaneRotation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Classes\SchedulerDetails.cs" />
+    <Compile Include="Schedulers\EnhancedLaneRotation.cs" />
+    <Compile Include="Utilities.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DerbyManagement.DAL\DerbyManagement.DAL.csproj">
-      <Project>{e123c993-45ca-4688-9db0-13cfe9063682}</Project>
-      <Name>DerbyManagement.DAL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DerbyManagement.Model\DerbyManagement.Model.csproj">
-      <Project>{64302473-2002-4a11-9921-368fc4f01385}</Project>
-      <Name>DerbyManagement.Model</Name>
-    </ProjectReference>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
